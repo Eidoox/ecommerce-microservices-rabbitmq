@@ -8,5 +8,50 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: eidoox
-      RABBITMQ_DEFAULT_PASS: eidoox99
+      RABBITMQ_DEFAULT_USER: "eidoox"
+      RABBITMQ_DEFAULT_PASS: "eidoox99"
+    networks:
+      - ecommerce-network
+
+  inventory-service:
+    build:
+      context: ./inventory-service
+    volumes:
+      - ./inventory-service:/app # Bind mount the local directory to /app in the container
+    depends_on:
+      - rabbitmq
+    ports:
+      - "3001:3001"
+    restart: on-failure
+    networks:
+      - ecommerce-network
+
+  orders-service:
+    build:
+      context: ./orders-service
+    volumes:
+      - ./orders-service:/app
+    depends_on:
+      - rabbitmq
+    ports:
+      - "3002:3002"
+    restart: on-failure
+    networks:
+      - ecommerce-network
+
+  email-service:
+    build:
+      context: ./email-service
+    volumes:
+      - ./email-service:/app
+    depends_on:
+      - rabbitmq
+    ports:
+      - "3003:3003"
+    restart: on-failure
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+    driver: bridge

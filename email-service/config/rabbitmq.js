@@ -2,6 +2,7 @@
 const amqp = require("amqplib");
 
 const RABBITMQ_URL = process.env.RABBITMQ_URL;
+console.log(RABBITMQ_URL);
 const EXCHANGE_NAME = "orders_exchange";
 const QUEUE_NAME = "orders_email_service_queue";
 const QUEUE_BINDING_KEY = "orders.emailnotification";
