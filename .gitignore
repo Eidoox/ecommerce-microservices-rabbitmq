@@ -2,3 +2,5 @@
 /inventory-service/.env
 /orders-service/node_modules
 /orders-service/.env
+/email-service/node_modules
+/email-service/.env
