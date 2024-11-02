@@ -1,0 +1,4 @@
+/inventory-service/node_modules
+/inventory-service/.env
+/orders-service/node_modules
+/orders-service/.env
