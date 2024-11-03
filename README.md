@@ -53,7 +53,7 @@ To enable seamless, asynchronous communication between services, the application
 
 ###  Summary of Communication Flow
 - Order Service initiates the order by sending messages to both Inventory and Email services.
-- Inventory Service adjusts stock based on the order and can trigger further notifications if needed.
-- Email Service sends confirmation emails based on order creation and inventory updates, keeping both customers and stakeholders informed.
+- Inventory Service adjusts stock based on the order.
+- Email Service sends confirmation emails based on order creation, sending to customers a confirmation email .
 
 This setup enables loose coupling between services, allowing each to operate independently while maintaining coordination through RabbitMQ's messaging system.
